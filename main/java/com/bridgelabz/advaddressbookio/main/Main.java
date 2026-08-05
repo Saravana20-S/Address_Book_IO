@@ -91,6 +91,21 @@ public class Main {
         // Display updated contacts
         addressBook.displayContacts();
 
+        // ---------------- Delete Contact ----------------
+
+        System.out.println("\n===== Delete Contact =====");
+
+        System.out.print("Enter First Name: ");
+        String deleteFirstName = scanner.nextLine();
+
+        System.out.print("Enter Last Name: ");
+        String deleteLastName = scanner.nextLine();
+
+        addressBook.deleteContact(deleteFirstName, deleteLastName);
+
+// Display remaining contacts
+        addressBook.displayContacts();
+
         scanner.close();
     }
 }

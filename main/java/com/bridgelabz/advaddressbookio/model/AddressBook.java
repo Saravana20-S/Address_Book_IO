@@ -1,6 +1,7 @@
 package com.bridgelabz.advaddressbookio.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -87,5 +88,32 @@ public class AddressBook {
             System.out.println(contact);
             System.out.println("----------------------------------");
         }
+    }
+
+    /**
+     * Deletes a contact from the address book.
+     *
+     * @param firstName First name
+     * @param lastName Last name
+     */
+    public void deleteContact(String firstName, String lastName) {
+
+        Iterator<ContactPerson> iterator = contactList.iterator();
+
+        while (iterator.hasNext()) {
+
+            ContactPerson contact = iterator.next();
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName)
+                    && contact.getLastName().equalsIgnoreCase(lastName)) {
+
+                iterator.remove();
+
+                System.out.println("\nContact deleted successfully.");
+                return;
+            }
+        }
+
+        System.out.println("\nContact not found.");
     }
 }
