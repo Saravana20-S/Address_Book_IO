@@ -6,6 +6,7 @@ import io.restassured.http.ContentType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class RestAssuredService {
 
@@ -49,5 +50,19 @@ public class RestAssuredService {
                         .as(ContactPerson[].class);
 
         return Arrays.asList(contacts);
+    }
+
+
+    public CompletableFuture<Void> addContactAsync(
+            ContactPerson contact) {
+
+        return CompletableFuture.runAsync(() ->
+                addContact(contact));
+    }
+
+    public CompletableFuture<List<ContactPerson>> getContactsAsync() {
+
+        return CompletableFuture.supplyAsync(
+                this::getContacts);
     }
 }

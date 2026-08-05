@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Service class responsible for reading and writing
@@ -101,5 +102,30 @@ public class CsvFileService {
         }
 
         return contacts;
+    }
+
+
+    /**
+     * Writes contacts asynchronously.
+     *
+     * @param contactList List of contacts
+     * @return CompletableFuture
+     */
+    public CompletableFuture<Void> writeContactsAsync(
+            List<ContactPerson> contactList) {
+
+        return CompletableFuture.runAsync(() -> {
+            writeContacts(contactList);
+        });
+    }
+
+    /**
+     * Reads contacts asynchronously.
+     *
+     * @return CompletableFuture containing contacts
+     */
+    public CompletableFuture<List<ContactPerson>> readContactsAsync() {
+
+        return CompletableFuture.supplyAsync(this::readContacts);
     }
 }

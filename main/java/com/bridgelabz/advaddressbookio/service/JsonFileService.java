@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Service class for reading and writing contacts
@@ -74,5 +75,18 @@ public class JsonFileService {
 
             return Collections.emptyList();
         }
+    }
+
+    public CompletableFuture<Void> writeContactsAsync(
+            List<ContactPerson> contactList) {
+
+        return CompletableFuture.runAsync(() ->
+                writeContacts(contactList));
+    }
+
+    public CompletableFuture<List<ContactPerson>> readContactsAsync() {
+
+        return CompletableFuture.supplyAsync(
+                this::readContacts);
     }
 }

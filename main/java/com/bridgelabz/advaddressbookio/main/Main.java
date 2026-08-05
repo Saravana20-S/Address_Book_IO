@@ -188,9 +188,34 @@ public class Main {
 
                 case 15:
 
-                    // Reuse your existing contact object
-                    System.out.println("Reuse Contact");
-//                    restService.addContact(contact);
+                    csvService
+                            .writeContactsAsync(addressBook.getContactList())
+                            .thenRun(() ->
+                                    System.out.println(
+                                            "CSV Write Completed."));
+
+//                    jsonService
+//                            .writeContactsAsync(addressBook.getContactList())
+//                            .thenRun(() ->
+//                                    System.out.println("JSON Saved."));
+//
+//                    restService
+//                            .addContactAsync(contact)
+//                            .thenRun(() ->
+//                                    System.out.println("Uploaded Successfully."));
+//
+//                    csvService
+//                            .readContactsAsync()
+//                            .thenAccept(contacts -> {
+//
+//                                System.out.println("\nContacts");
+//
+//                                contacts.forEach(System.out::println);
+//
+//                            });
+
+                    
+                    System.out.println("Main Thread Continues...");
 
                     break;
 
