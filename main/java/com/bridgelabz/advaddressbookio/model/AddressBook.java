@@ -1,9 +1,6 @@
 package com.bridgelabz.advaddressbookio.model;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents an Address Book that stores multiple contacts.
@@ -14,10 +11,23 @@ public class AddressBook {
     private final List<ContactPerson> contactList;
 
     /**
+     * Dictionary to store City -> List of Contacts
+     */
+    private final Map<String, List<ContactPerson>> cityDictionary;
+
+    /**
+     * Dictionary to store State -> List of Contacts
+     */
+    private final Map<String, List<ContactPerson>> stateDictionary;
+
+    /**
      * Initializes an empty Address Book.
      */
     public AddressBook() {
+
         this.contactList = new ArrayList<>();
+        this.cityDictionary = new HashMap<>();
+        this.stateDictionary = new HashMap<>();
     }
     
     /**
@@ -36,7 +46,20 @@ public class AddressBook {
             return;
         }
 
+        // Add to main contact list
         contactList.add(contact);
+
+// Update City Dictionary
+        cityDictionary
+                .computeIfAbsent(contact.getCity(), key -> new ArrayList<>())
+                .add(contact);
+
+// Update State Dictionary
+        stateDictionary
+                .computeIfAbsent(contact.getState(), key -> new ArrayList<>())
+                .add(contact);
+
+        System.out.println("\nContact added successfully.");
         System.out.println("\nContact added successfully.");
     }
 
@@ -204,6 +227,50 @@ public class AddressBook {
 
         contactList.stream()
                 .sorted(Comparator.comparing(ContactPerson::getZip))
+                .forEach(System.out::println);
+    }
+
+
+    /**
+     * Displays all contacts belonging to a given city.
+     *
+     * @param city City name
+     */
+    public void viewPersonsByCity(String city) {
+
+        List<ContactPerson> persons =
+                cityDictionary.getOrDefault(city, Collections.emptyList());
+
+        if (persons.isEmpty()) {
+            System.out.println("\nNo contacts found in city: " + city);
+            return;
+        }
+
+        System.out.println("\n===== CONTACTS IN CITY : " + city + " =====");
+
+        persons.stream()
+                .forEach(System.out::println);
+    }
+
+
+    /**
+     * Displays all contacts belonging to a given state.
+     *
+     * @param state State name
+     */
+    public void viewPersonsByState(String state) {
+
+        List<ContactPerson> persons =
+                stateDictionary.getOrDefault(state, Collections.emptyList());
+
+        if (persons.isEmpty()) {
+            System.out.println("\nNo contacts found in state: " + state);
+            return;
+        }
+
+        System.out.println("\n===== CONTACTS IN STATE : " + state + " =====");
+
+        persons.stream()
                 .forEach(System.out::println);
     }
 }

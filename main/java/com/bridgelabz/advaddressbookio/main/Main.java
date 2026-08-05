@@ -96,11 +96,32 @@ public class Main {
                     System.out.println("\nThank you for using Address Book.");
                     break;
 
+                case 8:
+
+                    System.out.print("Enter City: ");
+                    String cityy = scanner.nextLine();
+
+                    addressBook.viewPersonsByCity(cityy);
+                    break;
+
+                case 9:
+
+                    System.out.print("Enter State: ");
+                    String state2 = scanner.nextLine();
+
+                    addressBook.viewPersonsByState(state2);
+                    break;
+
+                case 10:
+
+                    System.out.println("\nThank you for using Address Book.");
+                    break;
+
                 default:
                     System.out.println("\nInvalid choice.");
             }
 
-        } while (choice != 3);
+        } while (choice != 9);
 
         scanner.close();
     }
