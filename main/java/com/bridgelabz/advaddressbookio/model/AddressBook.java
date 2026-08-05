@@ -150,4 +150,60 @@ public class AddressBook {
                     System.out.println("--------------------------------");
                 });
     }
+
+
+    /**
+     * Displays contacts sorted alphabetically by city.
+     */
+    public void sortContactsByCity() {
+
+        if (contactList.isEmpty()) {
+            System.out.println("\nNo contacts available.");
+            return;
+        }
+
+        System.out.println("\n====== CONTACTS SORTED BY CITY ======");
+
+        contactList.stream()
+                .sorted(Comparator.comparing(
+                        ContactPerson::getCity,
+                        String.CASE_INSENSITIVE_ORDER))
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Displays contacts sorted alphabetically by state.
+     */
+    public void sortContactsByState() {
+
+        if (contactList.isEmpty()) {
+            System.out.println("\nNo contacts available.");
+            return;
+        }
+
+        System.out.println("\n====== CONTACTS SORTED BY STATE ======");
+
+        contactList.stream()
+                .sorted(Comparator.comparing(
+                        ContactPerson::getState,
+                        String.CASE_INSENSITIVE_ORDER))
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Displays contacts sorted by ZIP code.
+     */
+    public void sortContactsByZip() {
+
+        if (contactList.isEmpty()) {
+            System.out.println("\nNo contacts available.");
+            return;
+        }
+
+        System.out.println("\n====== CONTACTS SORTED BY ZIP ======");
+
+        contactList.stream()
+                .sorted(Comparator.comparing(ContactPerson::getZip))
+                .forEach(System.out::println);
+    }
 }
