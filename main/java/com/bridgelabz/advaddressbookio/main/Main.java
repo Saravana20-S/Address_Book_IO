@@ -22,7 +22,8 @@ public class Main {
             System.out.println("\n========= ADDRESS BOOK =========");
             System.out.println("1. Add Contact");
             System.out.println("2. Display Contacts");
-            System.out.println("3. Exit");
+            System.out.println("3. Sort Contacts By Name");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
@@ -73,6 +74,10 @@ public class Main {
                     break;
 
                 case 3:
+                    addressBook.sortContactsByName();
+                    break;
+
+                case 4:
                     System.out.println("\nThank you for using Address Book.");
                     break;
 

@@ -1,6 +1,7 @@
 package com.bridgelabz.advaddressbookio.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -125,5 +126,28 @@ public class AddressBook {
         }
 
         System.out.println("\nContact not found.");
+    }
+
+    /**
+     * Displays all contacts sorted alphabetically
+     * by first name and then last name.
+     */
+    public void sortContactsByName() {
+
+        if (contactList.isEmpty()) {
+            System.out.println("\nNo contacts available.");
+            return;
+        }
+
+        System.out.println("\n====== SORTED CONTACTS ======");
+
+        contactList.stream()
+                .sorted(Comparator
+                        .comparing(ContactPerson::getFirstName, String.CASE_INSENSITIVE_ORDER)
+                        .thenComparing(ContactPerson::getLastName, String.CASE_INSENSITIVE_ORDER))
+                .forEach(contact -> {
+                    System.out.println(contact);
+                    System.out.println("--------------------------------");
+                });
     }
 }
