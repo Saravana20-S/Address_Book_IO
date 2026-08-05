@@ -1,5 +1,7 @@
 package com.bridgelabz.advaddressbookio.model;
 
+import java.util.Objects;
+
 /**
  * Model class representing a Contact Person in the Address Book.
  * This class stores all the personal details of a contact.
@@ -113,6 +115,36 @@ public class ContactPerson {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Two ContactPerson objects are considered equal
+     * if they have the same first name and last name.
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj)
+            return true;
+
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        ContactPerson contact = (ContactPerson) obj;
+
+        return firstName.equalsIgnoreCase(contact.firstName)
+                && lastName.equalsIgnoreCase(contact.lastName);
+    }
+
+    /**
+     * Generates hash code based on first name and last name.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                firstName.toLowerCase(),
+                lastName.toLowerCase()
+        );
     }
 
     /**

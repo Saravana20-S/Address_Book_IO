@@ -18,13 +18,23 @@ public class AddressBook {
     public AddressBook() {
         this.contactList = new ArrayList<>();
     }
-
+    
     /**
-     * Adds a new contact to the address book.
+     * Adds a contact only if it does not already exist.
      *
-     * @param contact ContactPerson object to be added
+     * @param contact Contact to be added
      */
     public void addContact(ContactPerson contact) {
+
+        // Check for duplicate contact using Java Stream
+        boolean isDuplicate = contactList.stream()
+                .anyMatch(existingContact -> existingContact.equals(contact));
+
+        if (isDuplicate) {
+            System.out.println("\nDuplicate contact found. Contact was not added.");
+            return;
+        }
+
         contactList.add(contact);
         System.out.println("\nContact added successfully.");
     }
