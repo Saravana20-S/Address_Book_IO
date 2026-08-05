@@ -28,6 +28,49 @@ public class AddressBook {
         System.out.println("\nContact added successfully.");
     }
 
+
+    /**
+     * Edits an existing contact.
+     * The contact is identified using first name and last name.
+     * Only non-name fields can be modified.
+     *
+     * @param firstName First name of the contact
+     * @param lastName Last name of the contact
+     * @param address Updated address
+     * @param city Updated city
+     * @param state Updated state
+     * @param zip Updated ZIP code
+     * @param phoneNumber Updated phone number
+     */
+    public void editContact(String firstName,
+                            String lastName,
+                            String address,
+                            String city,
+                            String state,
+                            String zip,
+                            String phoneNumber) {
+
+        // Search for the contact
+        for (ContactPerson contact : contactList) {
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName)
+                    && contact.getLastName().equalsIgnoreCase(lastName)) {
+
+                // Update details except name
+                contact.setAddress(address);
+                contact.setCity(city);
+                contact.setState(state);
+                contact.setZip(zip);
+                contact.setPhoneNumber(phoneNumber);
+
+                System.out.println("\nContact updated successfully.");
+                return;
+            }
+        }
+
+        System.out.println("\nContact not found.");
+    }
+
     /**
      * Displays all contacts in the address book.
      */

@@ -14,12 +14,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Create an AddressBook object
         AddressBook addressBook = new AddressBook();
 
-        System.out.println("===== Add New Contact =====");
+        // ---------------- Add Contact ----------------
 
-        // Read contact details from the user
+        System.out.println("===== Add Contact =====");
+
         System.out.print("Enter First Name: ");
         String firstName = scanner.nextLine();
 
@@ -41,7 +41,6 @@ public class Main {
         System.out.print("Enter Phone Number: ");
         String phoneNumber = scanner.nextLine();
 
-        // Create ContactPerson object
         ContactPerson contact = new ContactPerson(
                 firstName,
                 lastName,
@@ -52,10 +51,44 @@ public class Main {
                 phoneNumber
         );
 
-        // Add contact to AddressBook
         addressBook.addContact(contact);
 
-        // Display all contacts
+        // ---------------- Edit Contact ----------------
+
+        System.out.println("\n===== Edit Contact =====");
+
+        System.out.print("Enter First Name of Contact: ");
+        String editFirstName = scanner.nextLine();
+
+        System.out.print("Enter Last Name of Contact: ");
+        String editLastName = scanner.nextLine();
+
+        System.out.print("Enter New Address: ");
+        String newAddress = scanner.nextLine();
+
+        System.out.print("Enter New City: ");
+        String newCity = scanner.nextLine();
+
+        System.out.print("Enter New State: ");
+        String newState = scanner.nextLine();
+
+        System.out.print("Enter New ZIP Code: ");
+        String newZip = scanner.nextLine();
+
+        System.out.print("Enter New Phone Number: ");
+        String newPhone = scanner.nextLine();
+
+        addressBook.editContact(
+                editFirstName,
+                editLastName,
+                newAddress,
+                newCity,
+                newState,
+                newZip,
+                newPhone
+        );
+
+        // Display updated contacts
         addressBook.displayContacts();
 
         scanner.close();
