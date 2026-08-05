@@ -2,7 +2,9 @@ package com.bridgelabz.advaddressbookio.main;
 
 import com.bridgelabz.advaddressbookio.model.AddressBook;
 import com.bridgelabz.advaddressbookio.model.ContactPerson;
+import com.bridgelabz.advaddressbookio.service.JsonFileService;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,6 +16,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
+        JsonFileService jsonService = new JsonFileService();
 
         int choice;
 
@@ -126,14 +129,39 @@ public class Main {
 
                 case 11:
 
+                    jsonService.writeContacts(addressBook.getContactList());
+
+                    break;
+
+                case 12:
+
+                    List<ContactPerson> contacts =
+                            jsonService.readContacts();
+
+                    if (contacts.isEmpty()) {
+
+                        System.out.println("\nNo contacts found.");
+
+                    } else {
+
+                        System.out.println("\n===== CONTACTS FROM JSON =====");
+
+                        contacts.forEach(System.out::println);
+                    }
+
+                    break;
+
+                case 13:
+
                     System.out.println("\nThank you for using Address Book.");
+
                     break;
 
                 default:
                     System.out.println("\nInvalid choice.");
             }
 
-        } while (choice != 11);
+        } while (choice != 13);
 
         scanner.close();
     }

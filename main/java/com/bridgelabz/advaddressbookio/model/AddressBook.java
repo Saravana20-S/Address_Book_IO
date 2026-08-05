@@ -315,4 +315,13 @@ public class AddressBook {
 
         persons.forEach(System.out::println);
     }
+
+    /**
+     * Returns all contacts in the address book.
+     *
+     * @return List of contacts
+     */
+    public List<ContactPerson> getContactList() {
+        return contactList;
+    }
 }
