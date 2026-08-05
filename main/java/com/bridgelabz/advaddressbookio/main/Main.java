@@ -26,7 +26,11 @@ public class Main {
             System.out.println("4. Sort By City");
             System.out.println("5. Sort By State");
             System.out.println("6. Sort By ZIP");
-            System.out.println("7. Exit");
+            System.out.println("7. View Persons By City");
+            System.out.println("8. View Persons By State");
+            System.out.println("9. Search Person By City");
+            System.out.println("10. Search Person By State");
+            System.out.println("11. Exit");
             System.out.print("Enter your choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
@@ -106,13 +110,21 @@ public class Main {
 
                 case 9:
 
-                    System.out.print("Enter State: ");
-                    String state2 = scanner.nextLine();
+                    System.out.print("Enter City: ");
+                    String searchCity = scanner.nextLine();
 
-                    addressBook.viewPersonsByState(state2);
+                    addressBook.searchPersonByCity(searchCity);
                     break;
 
                 case 10:
+
+                    System.out.print("Enter State: ");
+                    String searchState = scanner.nextLine();
+
+                    addressBook.searchPersonByState(searchState);
+                    break;
+
+                case 11:
 
                     System.out.println("\nThank you for using Address Book.");
                     break;
@@ -121,7 +133,7 @@ public class Main {
                     System.out.println("\nInvalid choice.");
             }
 
-        } while (choice != 9);
+        } while (choice != 11);
 
         scanner.close();
     }

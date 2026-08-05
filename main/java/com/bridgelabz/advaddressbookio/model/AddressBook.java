@@ -273,4 +273,46 @@ public class AddressBook {
         persons.stream()
                 .forEach(System.out::println);
     }
+
+    /**
+     * Searches and displays all contacts belonging to a given city.
+     *
+     * @param city Name of the city
+     */
+    public void searchPersonByCity(String city) {
+
+        List<ContactPerson> persons = contactList.stream()
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .toList();
+
+        if (persons.isEmpty()) {
+            System.out.println("\nNo contacts found in city: " + city);
+            return;
+        }
+
+        System.out.println("\n===== SEARCH RESULT : CITY = " + city + " =====");
+
+        persons.forEach(System.out::println);
+    }
+
+    /**
+     * Searches and displays all contacts belonging to a given state.
+     *
+     * @param state Name of the state
+     */
+    public void searchPersonByState(String state) {
+
+        List<ContactPerson> persons = contactList.stream()
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .toList();
+
+        if (persons.isEmpty()) {
+            System.out.println("\nNo contacts found in state: " + state);
+            return;
+        }
+
+        System.out.println("\n===== SEARCH RESULT : STATE = " + state + " =====");
+
+        persons.forEach(System.out::println);
+    }
 }
