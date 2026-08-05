@@ -2,6 +2,7 @@ package com.bridgelabz.advaddressbookio.main;
 
 import com.bridgelabz.advaddressbookio.model.AddressBook;
 import com.bridgelabz.advaddressbookio.model.ContactPerson;
+import com.bridgelabz.advaddressbookio.service.CsvFileService;
 import com.bridgelabz.advaddressbookio.service.JsonFileService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
         JsonFileService jsonService = new JsonFileService();
+        CsvFileService csvService = new CsvFileService();
 
         int choice;
 
@@ -33,7 +35,11 @@ public class Main {
             System.out.println("8. View Persons By State");
             System.out.println("9. Search Person By City");
             System.out.println("10. Search Person By State");
-            System.out.println("11. Exit");
+            System.out.println("11. Write Contacts to JSON");
+            System.out.println("12. Read Contacts from JSON");
+            System.out.println("13. Write Contacts to CSV");
+            System.out.println("14. Read Contacts from CSV");
+            System.out.println("15. Exit");
             System.out.print("Enter your choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
@@ -153,6 +159,30 @@ public class Main {
 
                 case 13:
 
+                    csvService.writeContacts(addressBook.getContactList());
+
+                    break;
+
+                case 14:
+
+                    List<ContactPerson> contactss =
+                            csvService.readContacts();
+
+                    if (contactss.isEmpty()) {
+
+                        System.out.println("\nNo contacts found.");
+
+                    } else {
+
+                        System.out.println("\n===== CONTACTS FROM CSV =====");
+
+                        contactss.forEach(System.out::println);
+                    }
+
+                    break;
+
+                case 15:
+
                     System.out.println("\nThank you for using Address Book.");
 
                     break;
@@ -161,7 +191,7 @@ public class Main {
                     System.out.println("\nInvalid choice.");
             }
 
-        } while (choice != 13);
+        } while (choice != 15);
 
         scanner.close();
     }
