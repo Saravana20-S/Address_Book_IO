@@ -13,98 +13,74 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         AddressBook addressBook = new AddressBook();
 
-        // ---------------- Add Contact ----------------
+        int choice;
 
-        System.out.println("===== Add Contact =====");
+        do {
 
-        System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
+            System.out.println("\n========= ADDRESS BOOK =========");
+            System.out.println("1. Add Contact");
+            System.out.println("2. Display Contacts");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
 
-        System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
+            choice = Integer.parseInt(scanner.nextLine());
 
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
+            switch (choice) {
 
-        System.out.print("Enter City: ");
-        String city = scanner.nextLine();
+                case 1:
 
-        System.out.print("Enter State: ");
-        String state = scanner.nextLine();
+                    // Read contact details
+                    System.out.print("Enter First Name: ");
+                    String firstName = scanner.nextLine();
 
-        System.out.print("Enter ZIP Code: ");
-        String zip = scanner.nextLine();
+                    System.out.print("Enter Last Name: ");
+                    String lastName = scanner.nextLine();
 
-        System.out.print("Enter Phone Number: ");
-        String phoneNumber = scanner.nextLine();
+                    System.out.print("Enter Address: ");
+                    String address = scanner.nextLine();
 
-        ContactPerson contact = new ContactPerson(
-                firstName,
-                lastName,
-                address,
-                city,
-                state,
-                zip,
-                phoneNumber
-        );
+                    System.out.print("Enter City: ");
+                    String city = scanner.nextLine();
 
-        addressBook.addContact(contact);
+                    System.out.print("Enter State: ");
+                    String state = scanner.nextLine();
 
-        // ---------------- Edit Contact ----------------
+                    System.out.print("Enter ZIP Code: ");
+                    String zip = scanner.nextLine();
 
-        System.out.println("\n===== Edit Contact =====");
+                    System.out.print("Enter Phone Number: ");
+                    String phoneNumber = scanner.nextLine();
 
-        System.out.print("Enter First Name of Contact: ");
-        String editFirstName = scanner.nextLine();
+                    // Create Contact object
+                    ContactPerson contact = new ContactPerson(
+                            firstName,
+                            lastName,
+                            address,
+                            city,
+                            state,
+                            zip,
+                            phoneNumber
+                    );
 
-        System.out.print("Enter Last Name of Contact: ");
-        String editLastName = scanner.nextLine();
+                    // Add contact
+                    addressBook.addContact(contact);
+                    break;
 
-        System.out.print("Enter New Address: ");
-        String newAddress = scanner.nextLine();
+                case 2:
+                    addressBook.displayContacts();
+                    break;
 
-        System.out.print("Enter New City: ");
-        String newCity = scanner.nextLine();
+                case 3:
+                    System.out.println("\nThank you for using Address Book.");
+                    break;
 
-        System.out.print("Enter New State: ");
-        String newState = scanner.nextLine();
+                default:
+                    System.out.println("\nInvalid choice.");
+            }
 
-        System.out.print("Enter New ZIP Code: ");
-        String newZip = scanner.nextLine();
-
-        System.out.print("Enter New Phone Number: ");
-        String newPhone = scanner.nextLine();
-
-        addressBook.editContact(
-                editFirstName,
-                editLastName,
-                newAddress,
-                newCity,
-                newState,
-                newZip,
-                newPhone
-        );
-
-        // Display updated contacts
-        addressBook.displayContacts();
-
-        // ---------------- Delete Contact ----------------
-
-        System.out.println("\n===== Delete Contact =====");
-
-        System.out.print("Enter First Name: ");
-        String deleteFirstName = scanner.nextLine();
-
-        System.out.print("Enter Last Name: ");
-        String deleteLastName = scanner.nextLine();
-
-        addressBook.deleteContact(deleteFirstName, deleteLastName);
-
-// Display remaining contacts
-        addressBook.displayContacts();
+        } while (choice != 3);
 
         scanner.close();
     }
