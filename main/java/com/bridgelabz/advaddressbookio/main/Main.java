@@ -133,6 +133,8 @@ public class Main {
                     addressBook.searchPersonByState(searchState);
                     break;
 
+
+                    //Gson already used
                 case 11:
 
                     jsonService.writeContacts(addressBook.getContactList());
