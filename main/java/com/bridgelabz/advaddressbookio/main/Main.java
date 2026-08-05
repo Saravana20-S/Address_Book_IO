@@ -4,6 +4,7 @@ import com.bridgelabz.advaddressbookio.model.AddressBook;
 import com.bridgelabz.advaddressbookio.model.ContactPerson;
 import com.bridgelabz.advaddressbookio.service.CsvFileService;
 import com.bridgelabz.advaddressbookio.service.JsonFileService;
+import com.bridgelabz.advaddressbookio.service.RestAssuredService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +20,7 @@ public class Main {
         AddressBook addressBook = new AddressBook();
         JsonFileService jsonService = new JsonFileService();
         CsvFileService csvService = new CsvFileService();
+        RestAssuredService restService = new RestAssuredService();
 
         int choice;
 
@@ -39,7 +41,9 @@ public class Main {
             System.out.println("12. Read Contacts from JSON");
             System.out.println("13. Write Contacts to CSV");
             System.out.println("14. Read Contacts from CSV");
-            System.out.println("15. Exit");
+            System.out.println("15. Add Contact to JSON Server");
+            System.out.println("16. View Contacts from JSON Server");
+            System.out.println("17. Exit");
             System.out.print("Enter your choice: ");
 
             choice = Integer.parseInt(scanner.nextLine());
@@ -143,8 +147,7 @@ public class Main {
 
                 case 12:
 
-                    List<ContactPerson> contacts =
-                            jsonService.readContacts();
+                    List<ContactPerson> contacts = jsonService.readContacts();
 
                     if (contacts.isEmpty()) {
 
@@ -185,15 +188,30 @@ public class Main {
 
                 case 15:
 
-                    System.out.println("\nThank you for using Address Book.");
+                    // Reuse your existing contact object
+                    System.out.println("Reuse Contact");
+//                    restService.addContact(contact);
 
+                    break;
+
+                case 16:
+
+                    List<ContactPerson> contactsss = restService.getContacts();
+
+                    contactsss.forEach(System.out::println);
+
+                    break;
+
+                case 17:
+
+                    System.out.println("Thank You!");
                     break;
 
                 default:
                     System.out.println("\nInvalid choice.");
             }
 
-        } while (choice != 15);
+        } while (choice != 17);
 
         scanner.close();
     }
